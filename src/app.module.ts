@@ -6,15 +6,16 @@ import { HellowordModule } from './helloword/helloword.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 
 @Module({
-  imports: [GraphQLModule.forRoot<ApolloDriverConfig>({
-    driver: ApolloDriver,
-    playground:false,
-    plugins:[
-      ApolloServerPluginLandingPageLocalDefault()
-    ],
-    autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-  }), HellowordModule,],
+  imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+    }),
+    HellowordModule,
+  ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}
