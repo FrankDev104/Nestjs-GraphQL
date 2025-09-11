@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { HellowordResolver } from './helloword.resolver';
 
-@Module({})
+@Module({
+  providers: [HellowordResolver]
+})
 export class HellowordModule {}

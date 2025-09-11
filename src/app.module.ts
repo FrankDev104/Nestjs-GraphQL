@@ -5,11 +5,12 @@ import { join } from 'path';
 import { HellowordModule } from './helloword/helloword.module';
 
 @Module({
-  imports: [ GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-    }), HellowordModule,],
-  controllers: [ ],
+  imports: [GraphQLModule.forRoot<ApolloDriverConfig>({
+    driver: ApolloDriver,
+    //playground:false,
+    autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+  }), HellowordModule,],
+  controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
