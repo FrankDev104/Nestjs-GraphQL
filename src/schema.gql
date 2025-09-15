@@ -20,10 +20,10 @@ type Query {
 }
 
 type Mutation {
-  createTodo(creaTodoInput: CreateDtoInput!): Todo!
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
 }
 
-input CreateDtoInput {
+input CreateTodoInput {
   """What needs to be done"""
   deescription: String!
 }
