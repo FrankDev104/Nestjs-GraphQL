@@ -1,3 +1,5 @@
-export { UpdateTodoInput } from "./update-todo.input ";
+export { StatusArgs } from "../args/status.args";
+
 export { CreateTodoInput } from "./create-todo.input";
+export { UpdateTodoInput,  } from "./update-todo.input ";
 
