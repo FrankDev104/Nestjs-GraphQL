@@ -8,6 +8,12 @@ type Todo {
   done: Boolean!
 }
 
+type AggregationsTypes {
+  total: Int!
+  pending: Int!
+  completed: Int!
+}
+
 type Query {
   """hola mundo es lo que retorna"""
   hello: String!
@@ -20,6 +26,7 @@ type Query {
   totalTodos: Int!
   pendginTodos: Int!
   completedTodos: Int!
+  aggegations: AggregationsTypes!
 }
 
 type Mutation {
