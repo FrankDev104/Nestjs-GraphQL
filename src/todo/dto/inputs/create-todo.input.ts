@@ -10,5 +10,5 @@ export class CreateTodoInput{
 @IsString()
 @IsNotEmpty()
 @MaxLength(20)
-deescription: string;
+description: string;
 }
