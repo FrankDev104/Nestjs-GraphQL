@@ -1,20 +1,17 @@
-
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Todo } from './entity/todo.entity';
 import { TodoService } from './todo.service';
-import { CreateTodoInput, StatusArgs, UpdateTodoInput,  } from './dto/inputs';
-
+import { CreateTodoInput, StatusArgs, UpdateTodoInput } from './dto/inputs';
 
 @Resolver(() => Todo)
 export class TodoResolver {
   constructor(private readonly todoService: TodoService) {}
 
   @Query(() => [Todo], { name: 'todos' })
-  findAll(
-    @Args() statusArgs: StatusArgs
-  ): Todo[] {
+  findAll(@Args() statusArgs: StatusArgs): Todo[] {
     return this.todoService.findAll(statusArgs);
   }
+
   @Query(() => Todo, { name: 'todo' })
   finOne(@Args('id', { type: () => Int }) id: number) {
     return this.todoService.findOne(id);
@@ -24,19 +21,28 @@ export class TodoResolver {
   createTodo(@Args('createTodoInput') createTodoInput: CreateTodoInput) {
     return this.todoService.create(createTodoInput);
   }
+
   @Mutation(() => Todo, { name: 'updateTodo' })
-  updateTodo(@Args('updateTodoInput') updateTodoInput: UpdateTodoInput)
-   {
+  updateTodo(@Args('updateTodoInput') updateTodoInput: UpdateTodoInput) {
     return this.todoService.update(updateTodoInput);
-   }
+  }
 
-
-
-   @Mutation(() => Boolean)
-  removeTodo(
-
-    @Args('id', {type: () => Int }) id: number
-  ) {
+  @Mutation(() => Boolean)
+  removeTodo(@Args('id', { type: () => Int }) id: number) {
     return this.todoService.delete(id);
+  }
+
+  @Query(() => Int, { name: 'totalTodos' })
+  totalTodos(): number {
+    return this.todoService.totalTodos;
+  }
+
+  @Query(() => Int, { name: 'pendginTodos' })
+  pendginTodos(): number {
+    return this.todoService.pendingTodos;
+  }
+  @Query(() => Int, { name: 'completedTodos' })
+  completedTodos(): number {
+    return this.todoService.completedTodos;
   }
 }

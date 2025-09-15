@@ -11,12 +11,23 @@ export class TodoService {
     { id: 3, description: 'Piedra del tiempo', done: false },
   ];
 
-  findAll(statusArgs: StatusArgs): Todo[] {
-    
-    const {status} = statusArgs;
+  get totalTodos() {
+    return this.todos.length;
+  }
+  get pendingTodos() {
+      return this.todos.filter(todo => todo.done === false).length;
 
-    if(status  !== undefined) return this.todos.filter(todo => todo.done === status);
-    
+  }
+  get completedTodos() {
+    return this.todos.filter(todo => todo.done === true).length;
+  }
+
+  findAll(statusArgs: StatusArgs): Todo[] {
+    const { status } = statusArgs;
+
+    if (status !== undefined)
+      return this.todos.filter((todo) => todo.done === status);
+
     return this.todos;
   }
   findOne(id: number): Todo {
@@ -53,8 +64,8 @@ export class TodoService {
 
   delete(id: number): Boolean {
     const todo = this.findOne(id);
-    this.todos = this.todos.filter(todo => todo.id !== id);
-  
-  return true 
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+
+    return true;
   }
 }
